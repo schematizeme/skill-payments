@@ -64,3 +64,5 @@ rota nula e a exceção de cinco condições valem aqui sem cópia local: bloco 
 - Auditoria de credencial: a chave live **não** aparece em nenhum segredo de hml/CI
   (`schematize-infra → references/segredos.md`).
 - `/pay-sandbox` roda este checklist.
+
+Cobrança dentro de bot de chat: o bot nunca toca PAN nem cobra fora de prd; ver `schematize-bots → references/ambientes-e-efeito-externo.md`.
