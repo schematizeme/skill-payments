@@ -3,6 +3,14 @@
 Todas as mudanças relevantes deste pacote, no formato [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/),
 com versionamento [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.2.0] — 2026-10-14
+Integração ao catálogo: orçamento de description e ponteiros entre as irmãs novas.
+
+### Alterado
+- `description` <=190 (orçamento do catálogo).
+- Divisas: `schematize-postgres` (locks, PITR do ledger), `schematize-incident` (cobrança duplicada, vazamento), `schematize-analytics` (funil sem PAN/PII), `schematize-git` (`/git-leak` para segredo de PSP).
+- Motivo: o catálogo estourou o orçamento de listagem com 45 skills; cada fronteira aponta a dona em vez de duplicar.
+
 ## [0.1.0] — 2026-10-14
 Primeira versão. Pagamento move dinheiro irreversível (PIX não estorna por botão, nota emitida tem efeito
 tributário, cartão cobrado gera contestação) e a base só tinha "cobrança é efeito externo" em uma linha.

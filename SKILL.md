@@ -3,7 +3,7 @@ name: schematize-payments
 metadata:
   version: 0.1.0
 description: >-
-  Pagamentos BR: PIX, boleto, cartão (sem tocar PAN), ledger em centavos, webhooks idempotentes, split, conciliação, NFS-e. Use ao integrar PSP ou cobrança. Nunca cobra fora de prd. Gate check-pay.sh. Webhook genérico: schematize-api.
+  Pagamentos BR: PIX, boleto, cartão sem tocar PAN, ledger em centavos, webhooks idempotentes, conciliação. Use ao integrar PSP ou cobrança. Nunca cobra fora de prd. Gate check-pay.sh.
 ---
 <!-- cross-skill: efeitos-externos.md, iam.md -> schematize-engineering -->
 
@@ -53,6 +53,10 @@ distância do ambiente de teste está a uma execução do incidente financeiro.
 | Termos, privacidade, devolução ao consumidor, LGPD, retenção de evidência | `schematize-institutional` | aqui só o gatilho técnico |
 | Teste (pirâmide, flaky, gate); teste nunca dispara efeito real | `schematize-qa` | aqui o que provar em sandbox |
 | Ataque a fluxo de pagamento (race de saldo, replay, forja de webhook) | `schematize-pentest` | lado ofensivo; aqui o construtivo |
+| Transação, lock e isolamento no banco do ledger; backup/PITR do dado financeiro | `schematize-postgres` | `schematize-postgres → references/locks-e-migrations.md`, `backup-e-pitr.md`; aqui o invariante do ledger |
+| Cobrança duplicada, vazamento de dado de cartão/cliente, PSP fora do ar: resposta | `schematize-incident` | declarar SEV, mitigar; aqui o que conferir no ledger |
+| Evento de funil de checkout (conversão) | `schematize-analytics` | tracking plan sem PAN nem PII; aqui só o dado financeiro |
+| Segredo do PSP commitado | `schematize-git` | `/git-leak`; `schematize-git → references/segredos.md` |
 | Segredo e cofre, rede, mTLS no ingress | `schematize-infra` | aqui o que exigir do PSP |
 | Alerta/SLO de taxa de falha, chargeback e atraso de webhook | `schematize-observability` | aqui o que medir |
 | Efeito externo fora de prd (base) | `schematize-engineering → references/efeitos-externos.md` | herdado, piso 1 |
